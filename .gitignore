@@ -1,0 +1,5 @@
+tools/
+portraits/
+*.sav
+*.sav.bak-*
+__pycache__/
