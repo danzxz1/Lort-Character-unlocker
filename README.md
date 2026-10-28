@@ -1,11 +1,13 @@
 <div align="center">
 
+[🇷🇺 Русский](README.ru.md) · **🇬🇧 English**
+
 # 🗝️ LORT Character Unlocker
 
-**Откройте всех героев LORT в пару кликов — без поиска по миру.**
+**Unlock every hero in LORT with a couple of clicks — no more hunting for them in the world.**
 
-Окно с портретами героев, под каждым — кнопка разблокировки.
-Python без зависимостей: Windows · Linux (Steam/Proton) · macOS
+A window with hero portraits, an "Unlock" button right under each one.
+Dependency-free Python: Windows · Linux (Steam/Proton) · macOS
 
 [![Python](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
@@ -14,139 +16,113 @@ Python без зависимостей: Windows · Linux (Steam/Proton) · macOS
 
 ---
 
-## ✨ Возможности
+## ✨ Features
 
-- 🖼️ **GUI с портретами** — карточка на каждого героя: портрет, статус (открыт / закрыт) и кнопка «Разблокировать» прямо под ним
-- 🎯 **Выбор героя** — открывайте только нужных или всех сразу
-- 🔒 **Обратная блокировка** — у открытого героя кнопка «Заблокировать» снова закрывает его
-- 🛡️ **Автоматический бэкап** перед каждой записью и кнопка «Откатить»
-- 🚦 **Защита** — не пишет в сохранение, пока запущена игра (она перезапишет его при выходе)
-- 🔁 **Идемпотентность** — повторное нажатие ничего не дублирует
-- 🌍 **Сама находит сохранения** на Windows и Linux/Proton, есть выбор папки вручную
-- ⌨️ **Консольный режим** для тех, кто любит терминал (`--dry-run`, `--list`, `--restore`)
+- 🖼️ **GUI with portraits** — one card per hero: portrait, status (unlocked / locked) and an "Unlock" button right below it
+- 🎯 **Pick your hero** — unlock only the ones you want, or everyone at once
+- 🔒 **Re-lock** — an unlocked hero gets a "Lock" button that closes them again
+- 🛡️ **Automatic backup** before every write, plus a "Restore" button
+- 🚦 **Safety check** — refuses to write while the game is running (it would overwrite the save on exit)
+- 🔁 **Idempotent** — clicking again never creates duplicates
+- 🌍 **Finds your saves automatically** on Windows and Linux/Proton, with manual folder selection
+- ⌨️ **Command-line mode** for terminal fans (`--dry-run`, `--list`, `--restore`)
 
-## 🚀 Быстрый старт
+## 🚀 Quick start
 
-1. **Закройте игру** и дождитесь, пока Steam закончит синхронизацию.
-2. Скачайте репозиторий (`Code → Download ZIP`) и распакуйте.
-3. Запустите окно:
+1. **Close the game** and wait until Steam finishes syncing.
+2. Download the repository (`Code → Download ZIP`) and unpack it.
+3. Start the window:
 
 ```bash
 python lort_gui.py
 ```
 
-4. Выберите профиль (обычно уже выбран тот, где есть прогресс) и нажмите **«Разблокировать»**
-   под нужным героем или **«Разблокировать всех»**.
+4. Pick a profile (the one with progress is selected by default) and click **"Unlock"**
+   under the hero you want, or **"Unlock all"**.
 
-> На Linux для GUI нужен `tkinter`: `sudo apt install python3-tk` (Debian/Ubuntu).
+> On Linux the GUI needs `tkinter`: `sudo apt install python3-tk` (Debian/Ubuntu).
 
-### 🖼️ Портреты
+### 🖼️ Portraits
 
-Игровые ресурсы в репозитории **не распространяются**. Портреты утилита берёт из
-вашей собственной копии игры и сохраняет в папку `portraits/`:
+Game assets are **not** distributed with this repository. The tool extracts the portraits
+from your own copy of the game and stores them in `portraits/`:
 
-1. Скачайте [retoc](https://github.com/trumank/retoc/releases) (распаковщик контейнеров Unreal Engine).
-2. В окне нажмите **«Загрузить портреты»** и укажите `retoc` — или выполните в терминале:
+1. Download [retoc](https://github.com/trumank/retoc/releases) (an Unreal Engine container unpacker).
+2. Click **"Load portraits"** in the window and point it to `retoc`, or run in a terminal:
 
 ```bash
-python extract_portraits.py --retoc path/to/retoc [--game-dir "<папка LORT>"]
+python extract_portraits.py --retoc path/to/retoc [--game-dir "<LORT folder>"]
 ```
 
-Без портретов GUI тоже работает: вместо картинок будут цветные заглушки с буквой класса.
+The GUI also works without portraits — it shows coloured placeholders with the class letter.
 
-## 🧙 Герои
+## 🧙 Heroes
 
-| Герой | Класс | Как открывается в игре | Утилита добавляет |
+| Hero | Class | How the game unlocks it | What the tool adds |
 |---|---|---|---|
-| Astrid Glitzgore | Warrior | доступен с начала | — |
-| Cliff Bowman | Ranger | доступен с начала | — |
-| Bernie Blazington | Wizard | `Challenge_MeetBoss_Ranger` | челлендж |
-| Croaks Malone | Rogue | `Challenge_FindTheRogue` | челлендж + `Weapon_Blinkblades` |
-| Xavier | Monk | `Challenge_FindTheMonk` | челлендж + `Weapon_DragonFists` |
-| Stacy of Chillendell | IceMage | `Challenge_Die` | челлендж + `Weapon_IceStaff` |
-| Marcus T. Fury | Paladin | `Challenge_Paladin` | челлендж |
+| Astrid Glitzgore | Warrior | available from the start | — |
+| Cliff Bowman | Ranger | available from the start | — |
+| Bernie Blazington | Wizard | `Challenge_MeetBoss_Ranger` | challenge |
+| Croaks Malone | Rogue | `Challenge_FindTheRogue` | challenge + `Weapon_Blinkblades` |
+| Xavier | Monk | `Challenge_FindTheMonk` | challenge + `Weapon_DragonFists` |
+| Stacy of Chillendell | IceMage | `Challenge_Die` | challenge + `Weapon_IceStaff` |
+| Marcus T. Fury | Paladin | `Challenge_Paladin` | challenge |
 
-## ⌨️ Консольный режим
+## ⌨️ Command-line mode
 
 ```bash
-python lort_unlocker.py                         # интерактивное меню
-python lort_unlocker.py --list                  # кто сейчас открыт
-python lort_unlocker.py -H monk -H paladin      # конкретных героев
-python lort_unlocker.py -H monk --lock          # заблокировать героя обратно
-python lort_unlocker.py --all -p Profile1.sav   # всех, в выбранном профиле
-python lort_unlocker.py --all --dry-run         # только показать изменения
-python lort_unlocker.py --restore               # вернуть из последнего бэкапа
-python lort_unlocker.py -s /path/to/SaveGames   # своя папка сохранений
+python lort_unlocker.py                         # interactive menu
+python lort_unlocker.py --list                  # who is unlocked right now
+python lort_unlocker.py -H monk -H paladin      # specific heroes
+python lort_unlocker.py -H monk --lock          # lock a hero back
+python lort_unlocker.py --all -p Profile1.sav   # everyone, in a chosen profile
+python lort_unlocker.py --all --dry-run         # only show what would change
+python lort_unlocker.py --restore               # roll back from the latest backup
+python lort_unlocker.py -s /path/to/SaveGames   # custom save folder
 ```
 
-| Опция | Описание |
+| Option | Description |
 |---|---|
-| `-H`, `--hero` | `monk`, `rogue`, `paladin`, `wizard`, `icemage` (можно несколько раз) |
-| `-a`, `--all` | все герои |
-| `-p`, `--profile` | файл профиля, например `Profile1.sav` |
-| `-s`, `--save-dir` | папка `SaveGames`, если автопоиск не сработал |
-| `-L`, `--lock` | наоборот: заблокировать выбранных героев |
-| `-l`, `--list` | показать статус и выйти |
-| `-n`, `--dry-run` | ничего не записывать |
-| `--restore` | откат из последнего бэкапа |
-| `--force` | не проверять, что игра закрыта |
+| `-H`, `--hero` | `monk`, `rogue`, `paladin`, `wizard`, `icemage` (repeatable) |
+| `-a`, `--all` | all heroes |
+| `-p`, `--profile` | profile file, e.g. `Profile1.sav` |
+| `-s`, `--save-dir` | `SaveGames` folder if auto-detection fails |
+| `-L`, `--lock` | the opposite: lock the selected heroes |
+| `-l`, `--list` | show status and exit |
+| `-n`, `--dry-run` | write nothing |
+| `--restore` | roll back from the latest backup |
+| `--force` | skip the "game is closed" check |
 
-## 📁 Где лежат сохранения
+## 📁 Save locations
 
-| Система | Путь |
+| System | Path |
 |---|---|
 | Windows | `%LOCALAPPDATA%\LORT\Saved\SaveGames\<SteamID>\` |
 | Linux (Proton) | `~/.local/share/Steam/steamapps/compatdata/<appid>/pfx/drive_c/users/steamuser/AppData/Local/LORT/Saved/SaveGames/` |
 
-Утилита правит только `Profile<N>.sav`. Рядом с изменённым файлом появляется копия
-`Profile1.sav.bak-<дата-время>`.
+Only `Profile<N>.sav` files are edited. A copy named `Profile1.sav.bak-<date-time>`
+is created next to the modified file.
 
-## ⚙️ Как это работает
+## ⚙️ How it works
 
-Сохранение — обычный JSON. Герой считается открытым, когда GUID его «классового»
-челленджа лежит в `completedChallenges`. Для части героев игра также выдаёт
-стартовое оружие в `unlocks.items`, и утилита добавляет его с тем же GUID.
-Остальные данные профиля не затрагиваются, форматирование файла сохраняется.
+A save file is plain JSON. A hero counts as unlocked once the GUID of their "class"
+challenge is present in `completedChallenges`. For some heroes the game also grants a
+starter weapon in `unlocks.items`; the tool adds it with the same GUID. The rest of the
+profile is left untouched and the file formatting is preserved.
 
-## ⚠️ Важно
+## ⚠️ Important
 
-- **Steam Cloud** может подменить изменённое сохранение облачной копией. Отключите
-  синхронизацию для LORT на время правки или запускайте игру только после того, как
-  Steam закончит синхронизацию.
-- Привязка «челлендж → герой» получена из данных игры и проверена на копии
-  сохранения, а не внутри самой игры. Если что-то выглядит странно — нажмите
-  «Откатить» (или `--restore`) и создайте issue.
-- **Достижения Steam** утилита не выдаёт: она меняет только файл сохранения, а ачивки игра
-  отправляет в Steam сама в момент выполнения челленджа. Поэтому за разблокировку через
-  утилиту они, скорее всего, не засчитаются (в игре это не проверялось).
-- Утилита предназначена для **ваших собственных сохранений**. После обновлений игры
-  формат может измениться.
-- Проект неофициальный и не связан с разработчиками LORT.
+- **Steam Cloud** may overwrite the edited save with the cloud copy. Disable sync for
+  LORT while editing, or start the game only after Steam has finished syncing.
+- The challenge → hero mapping was derived from the game data and verified on a copy of
+  a save file, not inside the game itself. If something looks wrong, click "Restore"
+  (or use `--restore`) and open an issue.
+- **Steam achievements are not granted.** The tool only edits the save file, while the
+  game sends achievements to Steam itself when a challenge is completed during a run,
+  so unlocking via this tool most likely won't count (not verified in-game).
+- Intended for **your own saves** only. The save format may change after game updates.
+- Unofficial project, not affiliated with the LORT developers.
 
-## 📄 Лицензия
+## 📄 License
 
-[MIT](LICENSE) — относится к коду утилиты. Игра LORT и её ресурсы принадлежат их правообладателям.
-
----
-
-<details>
-<summary>🇬🇧 English summary</summary>
-
-A dependency-free, cross-platform (Windows / Linux-Proton / macOS) Python tool with a
-simple GUI: one card per hero with the portrait, an open/locked badge and an
-"Unlock" button right under it. It adds the hero's class challenge GUID to
-`completedChallenges` of your own LORT save (and the starter weapon where the game
-grants one), makes a timestamped backup first, refuses to write while the game is
-running, and has a restore button. A CLI (`lort_unlocker.py`) is also included.
-
-```bash
-python lort_gui.py                   # GUI
-python lort_unlocker.py --all        # CLI: unlock everyone
-```
-
-Portraits are not shipped (game assets): the GUI/`extract_portraits.py` extracts them
-from your own install using [retoc](https://github.com/trumank/retoc). Needs `tkinter`
-on Linux. Close the game first and watch out for Steam Cloud overwriting the edited
-save. Unofficial; not affiliated with the LORT developers. MIT licensed.
-
-</details>
+[MIT](LICENSE) — covers the code of this tool. LORT and its assets belong to their respective owners.
