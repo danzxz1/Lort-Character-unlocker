@@ -19,6 +19,7 @@ Dependency-free Python: Windows · Linux (Steam/Proton) · macOS
 ## ✨ Features
 
 - 🖼️ **GUI with portraits** — one card per hero: portrait, status (unlocked / locked) and an "Unlock" button right below it
+- 🌐 **English / Русский interface** — switch with the 🌐 button (English by default, your choice is remembered)
 - 🎯 **Pick your hero** — unlock only the ones you want, or everyone at once
 - 🔒 **Re-lock** — an unlocked hero gets a "Lock" button that closes them again
 - 🛡️ **Automatic backup** before every write, plus a "Restore" button
